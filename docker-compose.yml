@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  react:
+    container_name: react_docker_influx
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - "./frontend:/app/frontend"
+    ports:
+      - "3001:3000"
+    stdin_open: true
+    tty: true
+
+
+  python3:
+    container_name: python3_docker_influx
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    volumes:
+      - "./api:/app/api"
+    ports:
+      - "5000:5000"
+    stdin_open: true
+    tty: true
